@@ -1,7 +1,9 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url
+from rest_framework.urlpatterns import format_suffix_patterns
+from views.promise import PromiseUserList
 
-pk = "/(?P<pk>\d+)/"
+urlpatterns = [
+    url(r'^promiseuser/$', PromiseUserList.as_view()),
+]
 
-urlpatterns = patterns(
-    # url(regex=r'^vendor/add/', view=VendorCreateView.as_view(), name='vendor-create'),
-)
+urlpatterns = format_suffix_patterns(urlpatterns)

@@ -10,7 +10,7 @@ class BaseTimeModel(models.Model):
         abstract = True
 
 
-class PromiseUsers(BaseTimeModel):
+class PromiseUser(BaseTimeModel):
     user = models.OneToOneField(User, blank=False, null=False)
 
     def __str__(self):
@@ -20,7 +20,7 @@ class PromiseUsers(BaseTimeModel):
 class Promise(BaseTimeModel):
     promise = models.CharField(max_length=1000, blank=False, null=False)
     private = models.BooleanField(default=False)
-    promise_maker = models.ForeignKey(PromiseUsers, blank=False, null=False)
+    promise_maker = models.ForeignKey(PromiseUser, blank=False, null=False)
     description = models.CharField(max_length=1000, blank=False, null=False)
     deadline = models.DateTimeField(blank=False, null=False)
 
@@ -32,7 +32,7 @@ class PromiseState(BaseTimeModel):
 
 class Comments(BaseTimeModel):
     comments = models.CharField(max_length=1000, blank=False, null=False)
-    commenter = models.ForeignKey(PromiseUsers, blank=False, null=False)
+    commenter = models.ForeignKey(PromiseUser, blank=False, null=False)
 
 
 class PromiseComments(Comments):
